@@ -1,5 +1,7 @@
 # Cortex Control on Bazzite
 
+[![Offline tests](https://github.com/Mordeton/cortex-control-linux/actions/workflows/tests.yml/badge.svg)](https://github.com/Mordeton/cortex-control-linux/actions/workflows/tests.yml)
+
 An unofficial, user-local launcher for the **Windows Cortex Control 4.1.0 app**
 on x86_64 Bazzite/KDE. It uses a private copy of Proton's Wine runtime and DXVK,
 with direct access to the Quad Cortex HID control interface.
@@ -15,8 +17,15 @@ a replacement editor, or a Neural DSP product. See [tested scope](COMPATIBILITY.
    [Neural DSP](https://neuraldsp.com/downloads). The launcher accepts only the exact
    tested installer/executable hashes. If that version is no longer offered,
    this release cannot install a newer version; do not bypass the check.
-3. Download/extract this repository or clone it, open a terminal in its folder,
-   and run as your normal desktop user:
+3. [Download the source ZIP](https://github.com/Mordeton/cortex-control-linux/archive/refs/heads/main.zip)
+   and extract it, or clone the repository:
+
+   ```sh
+   git clone https://github.com/Mordeton/cortex-control-linux.git
+   cd cortex-control-linux
+   ```
+
+   Open a terminal in the extracted/cloned folder and run as your normal desktop user:
 
    ```sh
    ./cortex-control doctor
@@ -42,7 +51,7 @@ For explicit input paths:
 ```
 
 `--exe` can replace `--installer` for an already extracted executable with the
-same verified hash. `--migrate-prefix /path/to/prefix` copies an existing prefix
+same verified hash. The app hash is also checked before each launch. `--migrate-prefix /path/to/prefix` copies an existing prefix
 on first installation; its original is preserved.
 
 ## Everyday commands

@@ -17,6 +17,9 @@ import sys
 import tempfile
 import uuid
 
+if sys.version_info < (3, 11):
+    raise SystemExit('Cortex Control Linux requires Python 3.11 or newer.')
+
 DATA = Path(os.environ.get('XDG_DATA_HOME', Path.home() / '.local/share'))
 ROOT = DATA / 'cortex-control-linux'
 EXPECTED = '9be548fb6cbd2e8c80715015c2a2f0f248c9b01a7165004e2b017ffe2b14e65a'
@@ -172,6 +175,10 @@ def load_config(required=True):
     for key in ('app', 'runtime', 'files'):
         if not isinstance(config.get(key), str) or not config[key]:
             raise ValueError('Invalid installation configuration: missing ' + key)
+    if not Path(config['files']).is_absolute():
+        raise ValueError('The import/export folder must be an absolute path.')
+    if 'manifest' in config and (not isinstance(config['manifest'], str) or not config['manifest']):
+        raise ValueError('Invalid installation configuration: manifest must be a path string.')
     for key in ('app', 'runtime', 'state'):
         value = config.get(key, 'state')
         if not isinstance(value, str) or not value or Path(value).is_absolute() or '..' in Path(value).parts:
@@ -239,8 +246,9 @@ def run_wine(wine_args=None, disconnected=False, config=None):
     runtime = ROOT / config['runtime']
     runtime_info(runtime)
     app = ROOT / config['app']
-    if not (app / 'Cortex Control.exe').is_file():
-        raise ValueError('Application files are missing. Run ./cortex-control reinstall with your installer.')
+    executable = app / 'Cortex Control.exe'
+    if not executable.is_file() or sha(executable) != EXPECTED:
+        raise ValueError('Application files are missing or fail the verified Cortex Control 4.1.0 hash check. Run ./cortex-control reinstall with your installer.')
     state = state_path(config)
     files = Path(config['files'])
     files.mkdir(parents=True, exist_ok=True)
@@ -563,6 +571,8 @@ def doctor(gui=False):
                     raise ValueError('Invalid copy manifest: expected a JSON object.')
                 bad = []
                 for name, digest in manifest.items():
+                    if not isinstance(name, str) or not isinstance(digest, str):
+                        raise ValueError('Invalid copy manifest: file paths and hashes must be strings.')
                     path = manifest_path.parent / name
                     if not path.resolve().is_relative_to(manifest_path.parent.resolve()) or not path.is_file() or sha(path) != digest:
                         bad.append(name)

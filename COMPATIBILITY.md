@@ -27,13 +27,27 @@ GPU, host configuration or device workflow.
 
 ## Installer validation, 2026-10-15
 
-- 24 offline regression tests cover install/reinstall failures, preserved settings,
+- 27 offline regression tests cover install/reinstall failures, preserved settings,
   legacy layouts, repair after removal, runtime discovery, diagnostics and ownership locks.
 - An isolated local test using the retained verified EXE and the runtime above
   completed real Wine prefix initialization, reinstall with a preserved settings
   marker, removal/repair of desktop integration, and desktop-file validation.
 - The isolated test exposed no QC interface and made no device changes. It did
-  not re-test Windows bootstrapper extraction, application rendering or Save.
+  not qualify application rendering or Save.
+
+## Publication checks, 2026-10-15
+
+- The official 4.1.0 Windows installer was freshly downloaded from Neural DSP.
+  Its installer hash, CAB extraction and extracted application hash matched the
+  recorded values below. The Windows installer was not executed.
+- The unified launcher was applied to the existing installation using `repair`.
+  Repair preserved the installation configuration, original EXE and prefix registry
+  hashes; the installed launcher matched the reviewed source.
+- The installed app displayed the connected QC's current grid, a second launch
+  activated the same window, and normal close released the HID interface.
+- No edit, scene/preset recall, Save, firmware or reset operation was intentionally
+  performed. This remains launch/connection evidence, not save qualification.
+- Private screenshots and logs are excluded from the repository.
 
 ## Still unqualified
 

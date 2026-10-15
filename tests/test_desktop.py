@@ -258,6 +258,28 @@ class InstallationTests(unittest.TestCase):
         activate.assert_not_called()
 
 
+    def test_modified_installed_executable_is_refused_before_device_access(self):
+        config = self.install()
+        (self.root / config['app'] / 'Cortex Control.exe').write_text('changed after installation')
+        with patch.object(desktop, 'device', side_effect=AssertionError('Must not enumerate')), patch.object(desktop, 'execute_wine') as execute:
+            with self.assertRaisesRegex(ValueError, 'hash check'):
+                REAL_RUN_WINE(config=config)
+        execute.assert_not_called()
+
+    def test_doctor_reports_malformed_manifest_metadata(self):
+        config = self.install()
+        config['manifest'] = ['not a path string']
+        (self.root / 'install.json').write_text(json.dumps(config))
+        with patch.object(desktop, 'device', return_value=None):
+            self.assertEqual(desktop.doctor(), 1)
+
+    def test_doctor_reports_malformed_manifest_hash(self):
+        config = self.install()
+        (self.root / config['manifest']).write_text(json.dumps({'app/dxgi.dll': ['not a hash']}))
+        with patch.object(desktop, 'device', return_value=None):
+            self.assertEqual(desktop.doctor(), 1)
+
+
     def test_installer_hash_rejected_before_extraction(self):
         with self.assertRaisesRegex(ValueError, 'not qualified'):
             desktop.extract_installer(self.exe, self.home / 'extract')
