@@ -10,6 +10,22 @@ with direct access to the Quad Cortex HID control interface.
 rendered and connected on the tested machine. This is not a native Linux port,
 a replacement editor, or a Neural DSP product. See [tested scope](COMPATIBILITY.md).
 
+**Tested hardware: full-size Quad Cortex only.** The **Quad Cortex mini has not
+been tested**; its compatibility with this launcher is unknown.
+
+## Disclaimer
+
+- This is an independent community project, not affiliated with or endorsed by
+  Neural DSP. Cortex Control and Quad Cortex remain Neural DSP's products and
+  trademarks. Obtain Cortex Control separately and follow its applicable license terms.
+- This experimental wrapper is provided **as is**, without warranty, under the
+  [MIT license](LICENSE). Use it at your own risk; reliable operation or protection
+  against crashes, data loss or workflow disruption is not guaranteed.
+- Back up important presets using a supported method before experimenting.
+  Save/reload, import/export and backup/restore remain unqualified here. Retained
+  installation copies are **not backups of presets on your QC**. Firmware updates
+  and factory resets are outside this project's scope.
+
 ## Quick start
 
 1. In Steam's Library, enable the **Tools** filter and install **Proton Experimental**.

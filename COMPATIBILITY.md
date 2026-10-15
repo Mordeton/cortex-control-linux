@@ -3,8 +3,13 @@
 This is an unofficial wrapper around the original Windows application. It does
 not establish official Neural DSP support for Linux.
 
+**Hardware testing covers the full-size Quad Cortex only. The Quad Cortex mini
+has not been tested, and compatibility is unknown.** No compatibility claim is
+made for other device models.
+
 | Component | Recorded configuration |
 | --- | --- |
+| Device | Full-size Quad Cortex; Quad Cortex mini untested |
 | Desktop | x86_64 Bazzite, KDE/Wayland with XWayland |
 | Graphics | NVIDIA RTX 2080 SUPER; DXVK |
 | Cortex Control | 4.1.0 |
@@ -51,6 +56,7 @@ GPU, host configuration or device workflow.
 
 ## Still unqualified
 
+- Quad Cortex mini and other device models.
 - Full editing and Save/reload correctness, import/export and backup/restore.
 - Long sessions, suspend/resume and USB reconnection.
 - Other GPUs, distributions, desktops, Cortex Control versions and Proton builds.

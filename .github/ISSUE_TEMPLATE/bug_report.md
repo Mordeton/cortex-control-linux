@@ -10,6 +10,7 @@ about: Report installation, launch or diagnostic problems
 **Environment**
 - Bazzite/KDE version:
 - GPU and driver:
+- Device model (full-size Quad Cortex is the only tested model; mini is untested):
 - Cortex Control version:
 - Proton version:
 - QC connected or disconnected:
