@@ -1,64 +1,91 @@
-# Cortex Control on Bazzite
+<p align="center">
+  <img src="assets/readme-banner.svg" alt="Cortex Control on Bazzite — an independent Linux launcher" width="1280">
+</p>
 
-[![Offline tests](https://github.com/Mordeton/cortex-control-linux/actions/workflows/tests.yml/badge.svg)](https://github.com/Mordeton/cortex-control-linux/actions/workflows/tests.yml)
+<h1 align="center">Cortex Control on Bazzite</h1>
 
-An unofficial, user-local launcher for the **Windows Cortex Control 4.1.0 app**
-on x86_64 Bazzite/KDE. It uses a private copy of Proton's Wine runtime and DXVK,
-with direct access to the Quad Cortex HID control interface.
+<p align="center">
+  Run the original Windows editor from your Linux application menu.<br>
+  A private Proton runtime, a guided setup, and practical recovery tools.
+</p>
 
-**Status: experimental, offline compatibility wrapper.** The original app has
-rendered and connected on the tested machine. This is not a native Linux port,
-a replacement editor, or a Neural DSP product. See [tested scope](COMPATIBILITY.md).
+<p align="center">
+  <a href="https://github.com/Mordeton/cortex-control-linux/actions/workflows/tests.yml"><img src="https://github.com/Mordeton/cortex-control-linux/actions/workflows/tests.yml/badge.svg" alt="Offline tests"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-6ee7c8?labelColor=17202b" alt="MIT license"></a>
+  <a href="COMPATIBILITY.md"><img src="https://img.shields.io/badge/status-experimental-c6b4ff?labelColor=17202b" alt="Experimental status"></a>
+</p>
 
-**Tested hardware: full-size Quad Cortex only.** The **Quad Cortex mini has not
-been tested**; its compatibility with this launcher is unknown.
+<p align="center">
+  <a href="#get-started">Get started</a> ·
+  <a href="#daily-use">Daily use</a> ·
+  <a href="COMPATIBILITY.md">Compatibility</a> ·
+  <a href="docs/TROUBLESHOOTING.md">Troubleshooting</a> ·
+  <a href="CREDITS.md">Credits</a>
+</p>
 
-## Disclaimer
+> [!IMPORTANT]
+> **Tested on the full-size Quad Cortex only.** Quad Cortex mini has **not** been
+> tested; its compatibility is unknown. This is an **experimental, offline** wrapper
+> for Cortex Control 4.1.0 on x86_64 Bazzite/KDE. Cloud login, downloads and updates
+> are unavailable.
 
-- This is an independent community project, not affiliated with or endorsed by
-  Neural DSP. Cortex Control and Quad Cortex remain Neural DSP's products and
-  trademarks. Obtain Cortex Control separately and follow its applicable license terms.
-- This experimental wrapper is provided **as is**, without warranty, under the
-  [MIT license](LICENSE). Use it at your own risk; reliable operation or protection
-  against crashes, data loss or workflow disruption is not guaranteed.
-- Back up important presets using a supported method before experimenting.
-  Save/reload, import/export and backup/restore remain unqualified here. Retained
-  installation copies are **not backups of presets on your QC**. Firmware updates
-  and factory resets are outside this project's scope.
+## What you get
 
-## Quick start
+| | |
+| --- | --- |
+| **Desktop integration** | Open Cortex Control from KDE's application menu. A second launch can focus the existing window. |
+| **A private runtime** | A local copy of Proton's Wine runtime and a dedicated prefix, independent of Steam's subsequent runtime updates. |
+| **Repair and recovery** | Restore the menu entry, rebuild the installation while retaining previous copies, and check your setup with `doctor`. |
 
-1. In Steam's Library, enable the **Tools** filter and install **Proton Experimental**.
-2. Obtain your **Cortex Control 4.1.0 Windows installer** from
-   [Neural DSP](https://neuraldsp.com/downloads). The launcher accepts only the exact
-   tested installer/executable hashes. If that version is no longer offered,
-   this release cannot install a newer version; do not bypass the check.
-3. [Download the source ZIP](https://github.com/Mordeton/cortex-control-linux/archive/refs/heads/main.zip)
-   and extract it, or clone the repository:
+The original Windows application runs through Wine and DXVK. This project is
+an independent compatibility launcher; it is not a native Linux port or an
+open-source replacement for Cortex Control.
 
-   ```sh
-   git clone https://github.com/Mordeton/cortex-control-linux.git
-   cd cortex-control-linux
-   ```
+## Get started
 
-   Open a terminal in the extracted/cloned folder and run as your normal desktop user:
+### 1. Prepare the two inputs
 
-   ```sh
-   ./cortex-control doctor
-   ./install.sh
-   ```
+- In Steam's Library, enable the **Tools** filter and install **Proton Experimental**.
+- Obtain the **Cortex Control 4.1.0 Windows installer** from
+  [Neural DSP's downloads page](https://neuraldsp.com/downloads).
 
-   On KDE, a file picker asks for the installer. Proton is detected in Steam's
-   default and additional libraries. A tested build is preferred; other builds
-   receive an explicit untested-runtime notice.
-4. Close other QC editor sessions and open **Cortex Control** from the application
-   menu. Connect the QC before launching for hardware access.
+Only the exact tested installer/executable hashes are accepted. If 4.1.0 is no
+longer offered, this version of the launcher cannot install a newer app version.
+Other Proton builds with the required layout are reported as untested.
 
-No Python packages, system Wine prefix, system-driver installation, or `sudo`
-are needed. Installation copies the runtime and can take a few minutes and several
-GB. Keep sufficient free space for both the new and retained old copies when reinstalling.
+### 2. Download and install
 
-For explicit input paths:
+[**Download source ZIP**](https://github.com/Mordeton/cortex-control-linux/archive/refs/heads/main.zip)
+and extract it, or clone the repository:
+
+```sh
+git clone https://github.com/Mordeton/cortex-control-linux.git
+cd cortex-control-linux
+```
+
+From the extracted or cloned folder, run as your normal desktop user:
+
+```sh
+./cortex-control doctor
+./install.sh
+```
+
+On KDE, a file picker asks for your Windows installer. Proton is detected from
+Steam's default and additional libraries. Installation copies the runtime and
+can take a few minutes and several GB of disk space.
+
+### 3. Open Cortex Control
+
+Close other QC editor sessions, connect the QC, and open **Cortex Control** from
+your application menu. Linux continues to handle USB audio and MIDI.
+
+The host needs **Python 3.11+**, `bwrap`, `lsof`, `cp`, `desktop-file-validate`,
+and `7z` or `7zz`. KDE's `kdialog` provides the file picker; `wmctrl` enables
+window activation. Working host Vulkan and X11/XWayland are required.
+`doctor` checks prerequisites; the installer does not layer system packages.
+
+<details>
+<summary><strong>Explicit paths and existing Wine prefixes</strong></summary>
 
 ```sh
 ./cortex-control install \
@@ -66,100 +93,90 @@ For explicit input paths:
   --runtime '/path/to/Proton - Experimental'
 ```
 
-`--exe` can replace `--installer` for an already extracted executable with the
-same verified hash. The app hash is also checked before each launch. `--migrate-prefix /path/to/prefix` copies an existing prefix
-on first installation; its original is preserved.
+Use `--exe` instead of `--installer` for an already extracted, verified 4.1.0
+executable. The application hash is also checked before every launch.
+`--migrate-prefix /path/to/prefix` copies an existing prefix on first install;
+its original is preserved.
 
-## Everyday commands
+</details>
 
-Run these from the repository folder, or use `~/.local/bin/cortex-control`
-after installation:
+## Daily use
 
-| Command | Result |
+Run these commands from this folder. After installation, you can also use
+`~/.local/bin/cortex-control` with the same arguments.
+
+| Command | Purpose |
 | --- | --- |
-| `./cortex-control` | Launch; focus an existing window if possible |
-| `./cortex-control run --disconnected` | Launch without exposing USB/HID devices |
+| `./cortex-control` | Open the editor, or focus its existing window |
+| `./cortex-control run --disconnected` | Open without exposing USB/HID devices |
 | `./cortex-control files` | Open the import/export folder |
-| `./cortex-control doctor` | Inspect installation, prerequisites and QC access without opening the HID connection |
-| `./cortex-control repair` | Restore/update scripts, launcher and menu entry; preserve the app, prefix and settings |
-| `./cortex-control reinstall` | Rebuild using the retained verified EXE and runtime; preserve settings in a copied prefix |
-| `./cortex-control uninstall` | Remove launcher/menu integration; retain application files and personal data |
+| `./cortex-control doctor` | Inspect the setup without opening the QC HID connection |
+| `./cortex-control repair` | Restore/update launcher and menu integration |
+| `./cortex-control reinstall` | Rebuild from retained verified inputs, copying existing settings |
+| `./cortex-control uninstall` | Remove desktop integration and retain application files and settings |
 
-After uninstall, run `./cortex-control repair` from this checkout to restore the
-menu. To repair damaged application/runtime files, use `reinstall --installer …
---runtime …` with good input copies. `install` never replaces an existing installation.
-The older `run.sh`, `scripts/setup.py` and `scripts/launch.py` delegate to this
-same implementation.
+After uninstall, `repair` restores the menu entry. Reinstall keeps previous
+copies and requires extra disk space. See [storage and recovery](docs/TROUBLESHOOTING.md#storage-and-recovery)
+for paths, retained configurations and interrupted installations.
 
-## Prerequisites and troubleshooting
+## Tested scope
 
-The host needs Python 3.11+, `bwrap`, `lsof`, `cp`, `desktop-file-validate`, and
-`7z` or `7zz` for installer extraction. KDE's `kdialog` enables the file picker
-and error dialogs; `wmctrl` enables existing-window activation. The graphics
-runtime needs functioning host Vulkan support and an X11 desktop or XWayland.
+| Observed on the tested setup | Still unqualified |
+| --- | --- |
+| App rendering and QC connection | Full editing and Save/reload correctness |
+| Existing-window activation and normal close | Import/export and backup/restore |
+| Linux audio/MIDI alongside editor control | Long sessions, suspend/resume and hotplug |
 
-Run `doctor` first. It checks file presence, selected hashes, desktop environment,
-visible HID ownership and access permissions. It does **not** prove Vulkan
-rendering, USB communication, or save correctness. Missing tools are reported by
-name; this project does not automatically layer packages onto Bazzite.
+Testing used a **full-size Quad Cortex with CorOS 4.1.1**, Cortex Control **4.1.0**,
+and Bazzite/KDE with an NVIDIA RTX 2080 SUPER. Other device models, app versions,
+GPUs and environments are unqualified. See the [complete compatibility record](COMPATIBILITY.md)
+for the exact runtime and evidence boundaries.
 
-- **No Proton found:** install Proton Experimental through Steam or provide
-  `--runtime`. Other Proton layouts are not automatically assumed compatible.
-- **No QC permission:** use your logged-in local desktop session and check its
-  device access. Do not run the app as root or apply blanket USB permissions.
-- **QC in use:** finish the other editor session. The launcher stops on detected
-  ownership and also acquires CorTux's cooperative HID lock.
-- **Started without a QC / USB reconnected:** close the app normally and relaunch
-  after connecting the device. The sandbox exposes the HID node chosen at startup;
-  hotplug recovery is not promised.
-- **Running session but no window:** it may still be starting. Check the app's
-  window and `doctor`; the launcher does not automatically kill or reset it.
-- **Startup failed:** inspect `last-run.log` in the active state directory listed
-  by `doctor`. Logs can contain personal paths/device details; review before sharing.
+For optional **QC USB 1/2 headphone playback**, see [the audio guide](AUDIO.md).
+That helper is independent of the editor and is never installed automatically.
 
-An earlier startup hang involved Wine audio discovery. This launcher disables
-only its own Wine audio backends. Linux audio/MIDI and other applications keep
-their existing drivers and settings.
+## Need help?
 
-## Storage and recovery
+Start with `./cortex-control doctor` and the [troubleshooting guide](docs/TROUBLESHOOTING.md).
+Diagnostics check configuration, files and visible device access; they do not
+prove rendering, communication or save correctness. Review personal paths and
+device details before sharing a report.
 
-Installation is under `${XDG_DATA_HOME:-~/.local/share}/cortex-control-linux`.
-The launcher is `~/.local/bin/cortex-control`; files for import/export are under
-`~/Documents/Cortex Control` (or the retained installation's configured folder).
+[Report a problem](https://github.com/Mordeton/cortex-control-linux/issues/new?template=bug_report.md)
+with your environment, device model and redacted diagnostics.
 
-Each install/reinstall prepares a separate `installs/<id>` bundle containing the
-app, runtime and prefix. The active `install.json` is replaced only after bundle
-preparation and desktop validation succeed. Existing bundles and legacy layouts
-are retained. Integration snapshots and previous configurations are under
-`backups/`. Nothing automatically deletes a previous prefix or your documents.
-Reinstall can therefore use additional disk space.
+## Disclaimer
 
-An interrupted preparation is not reused: retry creates a fresh staging copy.
-An interruption at desktop integration may require `repair`. For a failed
-reinstall, the previous configuration remains active unless the final commit
-completed. Do not delete retained bundles while diagnosing a failure. This is
-installation recovery, not a backup of presets stored on the physical QC.
+This is an independent community project, **not affiliated with or endorsed by
+Neural DSP**. Cortex Control and Quad Cortex remain Neural DSP's products and
+trademarks. Obtain the proprietary app separately and follow its license terms.
 
-## Network and optional audio
+This experimental wrapper is provided **as is, without warranty**, under the
+[MIT license](LICENSE). Use it at your own risk; reliable operation or protection
+against crashes, data loss or workflow disruption is not guaranteed.
 
-Networking is blocked: **Cloud login, downloads and updates are unavailable**.
-The UI still contains the original app's controls; this wrapper is not a device
-write filter. Only perform device operations you intend. Firmware/reset workflows
-are outside this project's scope.
+**Back up important presets using a supported method before experimenting.**
+Save/reload, import/export and backup/restore remain unqualified. Retained
+installation copies are **not backups of presets on your QC**. The original app
+still exposes device controls: the wrapper is not a device write filter.
+Firmware updates and factory resets are outside this project's scope.
 
-Optional QC USB 1/2 headphone routing is described in [AUDIO.md](AUDIO.md).
-It is independent of the editor and is never installed automatically.
+## Contributing and credits
 
-## Development and contributions
+Run the offline regression suite with:
 
 ```sh
 python3 -m unittest discover -s tests -v
 ```
 
-The automated tests use synthetic files and mocked Wine/hardware operations.
-They do not need proprietary software or a connected QC. See
-[CONTRIBUTING.md](CONTRIBUTING.md) for issue reports and compatibility evidence.
+Tests use synthetic files and mocked Wine/hardware operations, with no QC or
+proprietary software required. Read [contribution guidance](CONTRIBUTING.md)
+before proposing compatibility changes.
 
-Only the original wrapper scripts and documentation are distributed under the
-[MIT license](LICENSE). Obtain the proprietary application separately; it and
-Wine/Proton/DXVK retain their own licenses. See [credits](CREDITS.md).
+- **Mordeton** — idea, requirements, direction, hardware testing and feedback.
+- **GPT via OpenAI Codex** — implementation, diagnostics, tests and documentation.
+
+[Full credits](CREDITS.md) · [MIT license for the wrapper](LICENSE)
+
+No Windows installer, executable, runtime payload, presets or private device
+captures are distributed in this repository.

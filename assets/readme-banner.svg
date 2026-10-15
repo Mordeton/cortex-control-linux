@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="400" viewBox="0 0 1280 400" role="img" aria-labelledby="title description">
+  <title id="title">Cortex Control on Bazzite</title>
+  <desc id="description">An independent Linux launcher. An abstract signal path connects four blocks beside a terminal showing the install command.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111c2d"/>
+      <stop offset="1" stop-color="#090e18"/>
+    </linearGradient>
+    <linearGradient id="accent" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1280" y2="0">
+      <stop offset="0" stop-color="#6ee7c8"/>
+      <stop offset="1" stop-color="#a8a2ff"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="1" fill="#8fa5bf" opacity="0.12"/>
+    </pattern>
+  </defs>
+  <rect x="1" y="1" width="1278" height="398" rx="20" fill="url(#background)" stroke="#29374b"/>
+  <rect x="1" y="1" width="1278" height="398" rx="20" fill="url(#grid)"/>
+  <rect x="56" y="48" width="187" height="28" rx="14" fill="#6ee7c8" fill-opacity="0.1" stroke="#6ee7c8" stroke-opacity="0.25"/>
+  <g font-family="Inter, DejaVu Sans, Arial, sans-serif">
+    <text x="150" y="67" text-anchor="middle" font-size="11" font-weight="700" letter-spacing="1.5" fill="#8cefd6">COMMUNITY PROJECT</text>
+    <text x="56" y="147" font-size="49" font-weight="700" letter-spacing="-1.6" fill="#f1f5fb">Cortex Control</text>
+    <text x="56" y="207" font-size="49" font-weight="700" letter-spacing="-1.6" fill="#6ee7c8">on Bazzite</text>
+    <text x="58" y="252" font-size="18" fill="#a9b8cd">Your Quad Cortex. Your Linux desktop.</text>
+    <text x="58" y="337" font-size="11" font-weight="600" letter-spacing="2" fill="#8c9db4">USER-LOCAL</text>
+    <circle cx="169" cy="333" r="2" fill="#586b86"/>
+    <text x="190" y="337" font-size="11" font-weight="600" letter-spacing="2" fill="#8c9db4">OFFLINE</text>
+    <circle cx="273" cy="333" r="2" fill="#586b86"/>
+    <text x="294" y="337" font-size="11" font-weight="600" letter-spacing="2" fill="#8c9db4">EXPERIMENTAL</text>
+  </g>
+  <g transform="translate(732 57)">
+    <path d="M22 58H338" fill="none" stroke="url(#accent)" stroke-width="2" opacity="0.7"/>
+    <g fill="#121e30" stroke-width="1.5">
+      <rect x="0" y="26" width="64" height="64" rx="14" stroke="#6ee7c8"/>
+      <rect x="102" y="26" width="64" height="64" rx="14" stroke="#88d6e3"/>
+      <rect x="204" y="26" width="64" height="64" rx="14" stroke="#9fbaf4"/>
+      <rect x="306" y="26" width="64" height="64" rx="14" stroke="#b2a5ff"/>
+    </g>
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <path d="M16 58h9l5-12 7 24 5-12h7" stroke="#6ee7c8"/>
+      <path d="M122 47v22m24-22v22m-24-15h24m-24 9h24" stroke="#88d6e3"/>
+      <path d="M221 66l7-16 8 16 8-16 7 16" stroke="#9fbaf4"/>
+      <path d="M322 58h30m-10-10 10 10-10 10" stroke="#b2a5ff"/>
+    </g>
+    <rect x="-22" y="125" width="438" height="157" rx="12" fill="#090e18" stroke="#2b3a51"/>
+    <path d="M-21 164H415" stroke="#202e42"/>
+    <circle cx="0" cy="145" r="3" fill="#64758b"/>
+    <circle cx="13" cy="145" r="3" fill="#64758b"/>
+    <circle cx="26" cy="145" r="3" fill="#64758b"/>
+    <text x="390" y="149" text-anchor="end" font-family="DejaVu Sans, Arial, sans-serif" font-size="10" letter-spacing="1.5" fill="#6f839e">GET STARTED</text>
+    <g font-family="DejaVu Sans Mono, Consolas, monospace" font-size="16">
+      <text x="0" y="205" fill="#6ee7c8">$ <tspan fill="#d6e1f0">./install.sh</tspan></text>
+      <text x="0" y="243" fill="#7e91ab" font-size="12">A private runtime. A desktop menu entry.</text>
+    </g>
+  </g>
+  <path d="M58 382H1222" stroke="url(#accent)" stroke-opacity="0.4"/>
+</svg>
