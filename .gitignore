@@ -1,0 +1,23 @@
+# Private application payloads, Wine prefixes, device data and development evidence
+local-data/
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+# Original experiment notes remain local; public scope is in COMPATIBILITY.md.
+AGENTS.md
+RESULTS.md
+DESKTOP-SETUP.md
+AUDIO-COMPATIBILITY.md
+SOURCES.md
+scripts/audio.py
+scripts/close.py
+# Never include installers, runtime libraries, device captures or logs.
+*.exe
+*.dll
+*.cab
+*.log
+*.pcap
+*.pcapng
+.env
+.env.*
