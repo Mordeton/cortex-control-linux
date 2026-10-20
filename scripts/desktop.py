@@ -270,7 +270,7 @@ def run_wine(wine_args=None, disconnected=False, config=None):
 
 
 def execute_wine(runtime, app, state, files, node, wine_args):
-    cmd = ['bwrap', '--unshare-all', '--die-with-parent', '--new-session', '--clearenv',
+    cmd = ['bwrap', '--unshare-user', '--unshare-pid', '--unshare-uts', '--unshare-cgroup-try', '--die-with-parent', '--new-session', '--clearenv',
            '--ro-bind', '/usr', '/usr', '--symlink', 'usr/bin', '/bin',
            '--symlink', 'usr/lib', '/lib', '--symlink', 'usr/lib64', '/lib64',
            '--ro-bind', '/etc', '/etc', '--ro-bind', '/sys', '/sys',
